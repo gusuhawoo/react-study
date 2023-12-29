@@ -2,7 +2,7 @@ import './App.css';
 import Avatar from './components/Avatar';
 import Profile from './components/Profile';
 
-function App() {
+function AppProfile() {
   const handleClick = (event) => {
     console.log(event);
     alert('clicked button');
@@ -38,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppProfile;
