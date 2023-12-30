@@ -10,7 +10,8 @@ export default function AppXY() {
     <div
       className="container"
       onPointerMove={(e) => {
-        setPosition({ x: e.clientX, y: e.clientY });
+        setPosition((prev) => ({ x: e.clientX, y: prev.y }));
+        // setPosition({ x: e.clientX, y: e.clientY });
         // setX(e.clientX);
         // setY(e.clientY);
       }}
