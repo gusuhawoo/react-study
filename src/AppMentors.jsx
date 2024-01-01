@@ -46,6 +46,30 @@ export default function AppMentors() {
       >
         Change the mentor name.
       </button>
+      <button
+        onClick={() => {
+          const name = prompt(`what's your mentor's name?`);
+          const title = prompt(`what's your mentor's title?`);
+          setPerson((person) => ({
+            ...person,
+            mentors: [...person.mentors, { name, title }],
+            // mentors: [{ name, title }, ...person.mentors],
+          }));
+        }}
+      >
+        Add Mentor
+      </button>
+      <button
+        onClick={() => {
+          const name = prompt(`Who do you want to delete?`);
+          setPerson((person) => ({
+            ...person,
+            mentors: person.mentors.filter((mentor) => mentor.name !== name),
+          }));
+        }}
+      >
+        Delete Mentor
+      </button>
     </div>
   );
 }
