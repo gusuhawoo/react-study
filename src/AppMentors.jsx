@@ -1,38 +1,43 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
+import personReducer from './reducer/person-reducer';
 
 export default function AppMentors() {
-  const [person, setPerson] = useState(initialPerson);
+  const [person, dispatch] = useReducer(personReducer, initialPerson);
+  // const [person, setPerson] = useState(initialPerson);
 
   const handleUpdate = () => {
     const prev = prompt(`Whose name do you want to change?`);
     const current = prompt(`what's your mentor's name?`);
-    setPerson((person) => ({
-      ...person,
-      mentors: person.mentors.map((mentor) => {
-        if (mentor.name === prev) {
-          return { ...mentor, name: current };
-        }
-        return mentor;
-      }),
-    }));
+    dispatch({ type: 'update', prev, current });
+    // setPerson((person) => ({
+    //   ...person,
+    //   mentors: person.mentors.map((mentor) => {
+    //     if (mentor.name === prev) {
+    //       return { ...mentor, name: current };
+    //     }
+    //     return mentor;
+    //   }),
+    // }));
   };
 
   const handleAdd = () => {
     const name = prompt(`what's your mentor's name?`);
     const title = prompt(`what's your mentor's title?`);
-    setPerson((person) => ({
-      ...person,
-      mentors: [...person.mentors, { name, title }],
-      // mentors: [{ name, title }, ...person.mentors],
-    }));
+    dispatch({ type: 'added', name, title });
+    // setPerson((person) => ({
+    //   ...person,
+    //   mentors: [...person.mentors, { name, title }],
+    //   // mentors: [{ name, title }, ...person.mentors],
+    // }));
   };
 
   const handleDelete = () => {
     const name = prompt(`Who do you want to delete?`);
-    setPerson((person) => ({
-      ...person,
-      mentors: person.mentors.filter((mentor) => mentor.name !== name),
-    }));
+    dispatch({ type: 'deleted', name });
+    // setPerson((person) => ({
+    //   ...person,
+    //   mentors: person.mentors.filter((mentor) => mentor.name !== name),
+    // }));
   };
 
   return (
