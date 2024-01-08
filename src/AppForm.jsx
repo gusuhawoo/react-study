@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 
 export default function AppMentors() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [form, setForm] = useState({ name: '', email: '' });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
   };
 
   return (
@@ -15,20 +19,16 @@ export default function AppMentors() {
         type="text"
         id="name"
         name="name"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
+        value={form.name}
+        onChange={handleChange}
       />
       <label htmlFor="email">e-mail:</label>
       <input
         type="email"
         id="email"
-        email="email"
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
+        name="email"
+        value={form.email}
+        onChange={handleChange}
       />
       <button>Submit</button>
     </form>
